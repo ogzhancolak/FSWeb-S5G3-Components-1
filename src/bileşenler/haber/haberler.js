@@ -4,6 +4,16 @@ import './haberler.less'
 // ES6 Modülleri ile ilgili bilgi için bakabilirsiniz: https://exploringjs.com/es6/ch_modules.html#sec_basics-of-es6-modules
 const data = [
   {
+    baslik: "Tesla Bilançosu Açıklanacak: Şirket Bitcoin (BTC) Sattı Mı?",
+    tarih: '19 Nisan 2023',
+    ilkParagraf: `Tesla, elektrikli araç üretimi, enerji depolama sistemleri ve güneş enerjisi ürünlerinde uzmanlaşmış bir şirkettir. Şirket, sürdürülebilir bir enerji geleceği yaratmak isteyen bir grup mühendis tarafından 2003 yılında kuruldu. Tesla CEO’su Elon Musk, kripto paralara olan yakınlığı ve ilgisiyle de biliniyor. `,
+
+    ikinciParagraf: `Kripto para birimi piyasasında önümüzdeki hafta odak noktası Tesla olacak. 19 Nisan Çarşamba günü, ABD’li devasa elektrikli araç üreticisi, 2023 için ilk mali tablosunu yayınlayacak. İlk çeyrek bilançosu, ABD borsalarının kapanışından sonra veya Türkiye saatiyle 23:00’te gerçekleşecek. Şirketin Bitcoin ve diğer kripto para birimlerinin en son durumu bilançoda gösterilecek. `,
+
+    ucuncuParagraf: `Tesla, Şubat 2021’de Bitcoin’e 1,5 milyar dolar harcadığını ve gelecekte malları için dijital para birimini ödeme olarak kabul etmeyi planladığını açıkladı. Şirketin Bitcoin’e yatırım yapma tercihi, varlığın değerini artırmaya yardımcı olan dijital para biriminin önemli bir onayı olarak görüldü.`
+
+  },
+  {
     baslik: 'Workintech Öğrencileri: "Bizler en iyi öğrencileriz!"',
     tarih: '11 Kasım 2022',
     ilkParagraf: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
@@ -115,3 +125,49 @@ const data = [
   Adım 5: Veri dizisine yeni haber nesnesi eklemeyi deneyin. Diğer verilerle aynı yapıda olmasına dikkat edin.
   Eklediğiniz yeni haberi görmek için sayfayı yenileyin.
 */
+
+
+const haberYapıcı = (datas) => {
+  
+  const container = document.createElement("div");
+  container.className = "article";
+
+  const haberbaslıgı = document.createElement("h2");
+  haberbaslıgı.textContent = datas.baslik;
+  container.append(haberbaslıgı);
+
+  const tarih = document.createElement("p");
+  tarih.className = "tarih"
+  tarih.textContent = datas.tarih;
+  container.append(tarih);
+
+  const p1 = document.createElement("p");
+  p1.textContent = datas.ilkParagraf;
+  container.append(p1);
+
+  const p2 = document.createElement("p");
+  p2.textContent = datas.ikinciParagraf;
+  container.append(p2);
+
+  const p3 = document.createElement("p");
+  p3.textContent = datas.ucuncuParagraf;
+  container.append(p3);
+
+  const btn = document.createElement("span");
+  btn.style.fontSize = "20px"
+  btn.textContent = "+";
+  btn.className = "expandButton"
+  container.append(btn);
+
+  btn.addEventListener ( "click", () => {
+    container.classList.toggle("article-open")
+  })
+
+  return container;
+}
+
+const dataContainer = document.querySelector(".articles")
+
+data.forEach((datas) => {
+  dataContainer.append(haberYapıcı(datas))
+})
